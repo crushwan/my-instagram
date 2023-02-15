@@ -1,14 +1,25 @@
-import './globals.css'
+import "./globals.css";
+import Header from "@/components/Header";
+import { SessionProvider } from "@/components/SessionProvider";
+import ClientProvider from "@/components/ClientProvider";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { getServerSession } from "next-auth";
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const session = await getServerSession(authOptions);
+
   return (
     <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.jsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
       <head />
-      <body>{children}</body>
+      <body className="grid grid-cols-11">
+        <SessionProvider session={session}>
+          <div className="col-span-2">
+            <Header />
+          </div>
+          <ClientProvider />
+          <div className="col-span-9">{children}</div>
+        </SessionProvider>
+      </body>
     </html>
-  )
+  );
 }
