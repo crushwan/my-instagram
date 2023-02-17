@@ -6,11 +6,11 @@ import Suggestions from "./Suggestions";
 function Feed() {
   return (
     <main className="grid grid-cols-9">
-      <section className="flex flex-col col-span-9 lg:col-span-5 max-w-full mx-auto">
-        <div className="max-w-xs md:max-w-lg">
+      <section className="pt-5 xl:pt-10 grid grid-cols-1 col-span-9 lg:col-span-5 max-w-full mx-auto">
+        <div className="max-w-xs md:max-w-xl">
           <Stories />
         </div>
-        <div className="max-w-xs md:max-w-lg">
+        <div className="max-w-xs md:max-w-xl xl:pl-20">
           <Posts />
         </div>
       </section>

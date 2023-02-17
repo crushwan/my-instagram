@@ -12,7 +12,7 @@ function MiniProfile() {
         src={session?.user?.image || "../favicon.png"}
         alt="Profile Photo"
       />
-      <p className="font-semibold text-base flex-1">
+      <p className="font-semibold text-base flex-1 truncate">
         {session?.user?.name || "Welcome to Instagram"}
       </p>
       {/* <button className="font-semibold text-blue-500 text-xs">Switch</button> */}

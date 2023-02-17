@@ -1,26 +1,35 @@
+"use client";
+import { useEffect, useState } from "react";
 import Post from "./Post";
-
-const posts = [
-  {
-    id: "1234",
-    username: "crushwan",
-    userImg: "https://links.papareact.com/3ke",
-    img: "https://links.papareact.com/3ke",
-    caption: "subsricbe and dek ds d s",
-  },
-];
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { db } from "@/../firebase";
 
 function Posts() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      query(collection(db, "posts"), orderBy("timestamp", "desc")),
+      (snapshot) => {
+        setPosts(snapshot.docs);
+      }
+    );
+
+    return () => {
+      unsubscribe();
+    };
+  }, [db]);
+
   return (
     <div>
       {posts.map((post) => (
         <Post
           key={post.id}
           id={post.id}
-          username={post.username}
-          userImg={post.userImg}
-          img={post.img}
-          caption={post.caption}
+          username={post.data().username}
+          userImg={post.data().profileImg}
+          img={post.data().image}
+          caption={post.data().caption}
         />
       ))}
     </div>

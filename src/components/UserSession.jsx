@@ -13,7 +13,7 @@ function UserSession() {
       ) : (
         <UserIcon className="h-6 w-6" />
       )}
-      <p className="btnIcon">
+      <p className="btnIcon truncate">
         {session ? `${session?.user?.name}` : "Sign In"}
       </p>
     </ClientSideRoute>

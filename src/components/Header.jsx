@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { HomeIcon, MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import {
@@ -10,8 +11,12 @@ import {
 import DarkModeButton from "./DarkModeButton";
 import ClientSideRoute from "./ClientSideRoute";
 import UserSession from "./UserSession";
+import { useRecoilState } from "recoil";
+import { modalState } from "atoms/modelAtom";
 
 function Header() {
+  const [open, setOpen] = useRecoilState(modalState);
+
   return (
     <header className="fixed lg:w-[18%] h-screen flex flex-col justify-around border-r border-r-gray-200 dark:border-r-gray-500 shadow-sm py-7 px-3">
       <ClientSideRoute
@@ -54,7 +59,7 @@ function Header() {
           <div className="top-3 left-[14px] absolute rounded-full bg-red-500 h-[9px] w-[9px]" />
           <p className="btnIcon">Notifications</p>
         </div>
-        <div className="btn">
+        <div onClick={() => setOpen(true)} className="btn">
           <PlusIcon className="h-6 w-6" />
           <p className="btnIcon">Create</p>
         </div>

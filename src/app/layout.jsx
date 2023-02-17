@@ -4,6 +4,7 @@ import { SessionProvider } from "@/components/SessionProvider";
 import ClientProvider from "@/components/ClientProvider";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { getServerSession } from "next-auth";
+import CreatePost from "@/components/CreatePost";
 
 export default async function RootLayout({ children }) {
   const session = await getServerSession(authOptions);
@@ -18,6 +19,7 @@ export default async function RootLayout({ children }) {
           </div>
           <ClientProvider />
           <div className="col-span-9">{children}</div>
+          <CreatePost />
         </SessionProvider>
       </body>
     </html>
