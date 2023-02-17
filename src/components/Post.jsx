@@ -101,7 +101,14 @@ function Post({ id, username, userImg, img, caption }) {
       {session && (
         <div className="flex justify-between px-4 pt-4">
           <div className="flex space-x-4">
-            <HeartIcon onClick={likePost} className="btnPost" />
+            {hasLiked ? (
+              <HeartIconFilled
+                onClick={likePost}
+                className="btnPost text-red-500"
+              />
+            ) : (
+              <HeartIcon onClick={likePost} className="btnPost" />
+            )}
             <ChatBubbleLeftIcon className="btnPost" />
             <PaperAirplaneIcon className="btnPost -rotate-45 -mt-1" />
           </div>
@@ -110,6 +117,10 @@ function Post({ id, username, userImg, img, caption }) {
       )}
 
       <p className="p-5 truncate">
+        {likes.length > 0 && (
+          <p className="font-bold mb-1">{likes.length} likes</p>
+        )}
+
         <span className="font-bold mr-1">{username} </span>
         {caption}
       </p>
