@@ -15,19 +15,26 @@ import { db } from "@/../firebase";
 import {
   addDoc,
   collection,
+  deleteDoc,
+  doc,
   onSnapshot,
   orderBy,
   query,
   serverTimestamp,
+  setDoc,
 } from "firebase/firestore";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import Moment from "react-moment";
 
 function Post({ id, username, userImg, img, caption }) {
   const { data: session } = useSession();
   const [comment, setComment] = useState();
   const [comments, setComments] = useState([]);
+  const [likes, setLikes] = useState([]);
+  const [hasLiked, setHasLiked] = useState(false);
 
+  console.log(session);
   useEffect(() => {
     onSnapshot(
       query(
@@ -36,7 +43,33 @@ function Post({ id, username, userImg, img, caption }) {
       ),
       (snapshot) => setComments(snapshot.docs)
     );
-  }, [db]);
+  }, [db, id]);
+
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "posts", id, "likes"), (snapshot) =>
+        setLikes(snapshot.docs)
+      ),
+    [db, id]
+  );
+
+  useEffect(
+    () =>
+      setHasLiked(
+        likes.findIndex((like) => like.id === session?.user?.email) !== -1
+      ),
+    [likes]
+  );
+
+  const likePost = async () => {
+    if (hasLiked) {
+      await deleteDoc(doc(db, "posts", id, "likes", session.user.email));
+    } else {
+      await setDoc(doc(db, "posts", id, "likes", session.user.email), {
+        username: session.user.name,
+      });
+    }
+  };
 
   const sendComment = async (e) => {
     e.preventDefault();
@@ -68,7 +101,7 @@ function Post({ id, username, userImg, img, caption }) {
       {session && (
         <div className="flex justify-between px-4 pt-4">
           <div className="flex space-x-4">
-            <HeartIcon className="btnPost" />
+            <HeartIcon onClick={likePost} className="btnPost" />
             <ChatBubbleLeftIcon className="btnPost" />
             <PaperAirplaneIcon className="btnPost -rotate-45 -mt-1" />
           </div>
@@ -82,7 +115,7 @@ function Post({ id, username, userImg, img, caption }) {
       </p>
 
       {comments.length > 0 && (
-        <div className="ml-10 h-20 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500">
+        <div className="ml-10 h-20 overflow-y-auto scrollbar-hide hover:scrollbar-default scrollbar-thin scrollbar-thumb-gray-500">
           {comments.map((comment) => (
             <div key={comment.id} className="flex items-center space-x-2 mb-3">
               <img
@@ -94,6 +127,10 @@ function Post({ id, username, userImg, img, caption }) {
                 <span className="font-bold">{comment.data().username}</span>{" "}
                 {comment.data().comment}
               </p>
+
+              <Moment fromNow className="pr-5 text-xs">
+                {comment.data().timestamp?.toDate()}
+              </Moment>
             </div>
           ))}
         </div>
