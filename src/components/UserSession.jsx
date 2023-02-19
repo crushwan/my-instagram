@@ -7,7 +7,7 @@ function UserSession() {
   const { data: session } = useSession();
 
   return (
-    <ClientSideRoute route={!session ? "/auth/signin" : "/"} className="btn">
+    <ClientSideRoute route="/auth/signin" className="btn">
       {session ? (
         <img className="h-6 w-6 rounded-full" src={session?.user?.image} />
       ) : (

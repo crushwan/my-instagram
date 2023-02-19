@@ -8,11 +8,11 @@ function MiniProfile() {
   return (
     <div className="flex space-x-5 items-center ml-10">
       <img
-        className="w-16 h-16 rounded-full border p-[2px]"
+        className="w-14 h-14 rounded-full"
         src={session?.user?.image || "../favicon.png"}
         alt="Profile Photo"
       />
-      <p className="font-semibold text-base flex-1 truncate">
+      <p className="font-semibold text-sm flex-1 truncate">
         {session?.user?.name || "Welcome to Instagram"}
       </p>
       {/* <button className="font-semibold text-blue-500 text-xs">Switch</button> */}

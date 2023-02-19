@@ -24,7 +24,7 @@ function Suggestions() {
   return (
     <div className="mt-4 ml-10">
       <div className="flex justify-between mb-5">
-        <h3 className="text-gray-500 font-semibold text-sm">
+        <h3 className="text-gray-400 font-semibold text-sm">
           Suggestions for you
         </h3>
         <button className="hover:text-gray-500 font-semibold text-xs">

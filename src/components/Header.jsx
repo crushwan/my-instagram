@@ -21,22 +21,34 @@ function Header() {
     <header className="fixed lg:w-[18%] h-screen flex flex-col justify-around border-r border-r-gray-200 dark:border-r-gray-500 shadow-sm py-7 px-3">
       <ClientSideRoute
         route="/"
-        className="lg:hidden relative justify-center items-center mx-auto h-20 w-6 flex-shrink-0 cursor-pointer"
+        className="lg:hidden relative justify-center items-center mx-auto h-20 w-12 flex-shrink-0 cursor-pointer"
       >
-        <Image src="../logo.svg" fill className="object-contain" alt="" />
+        <Image
+          src="../icons8-instagram.svg"
+          fill
+          className="object-contain"
+          alt=""
+          priority
+        />
       </ClientSideRoute>
 
       <ClientSideRoute
         route="/"
-        className="hidden lg:inline-grid relative justify-center items-center mx-auto h-24 w-24 cursor-pointer"
+        className="hidden lg:inline-grid relative justify-center items-center mx-auto h-16 w-16 cursor-pointer"
       >
-        <Image src="../logo1.svg" fill className="object-contain" alt="" />
+        <Image
+          src="../icons8-instagram.svg"
+          fill
+          className="object-contain"
+          alt=""
+          priority
+        />
       </ClientSideRoute>
 
       <div className="flex-1">
         <div className="btn">
           <HomeIcon className="h-6 w-6" />
-          <p className="btnIcon">Home</p>
+          <p className="btnIcon font-semibold">Home</p>
         </div>
         <div className="btn">
           <MagnifyingGlassIcon className="h-6 w-6" />

@@ -14,10 +14,10 @@ export default async function RootLayout({ children }) {
       <head />
       <body className="grid grid-cols-11">
         <SessionProvider session={session}>
+          <ClientProvider />
           <div className="col-span-2">
             <Header />
           </div>
-          <ClientProvider />
           <div className="col-span-9">{children}</div>
           <CreatePost />
         </SessionProvider>

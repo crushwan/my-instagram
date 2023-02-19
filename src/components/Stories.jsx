@@ -6,15 +6,15 @@ import Story from "./Story";
 function Stories() {
   const [suggestions, setSuggestions] = useState([]);
 
-  useEffect(() => {
-    function createRandomUser() {
-      return {
-        id: faker.datatype.uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.image.avatar(),
-      };
-    }
+  function createRandomUser() {
+    return {
+      userId: faker.datatype.uuid(),
+      username: faker.internet.userName(),
+      avatar: faker.image.avatar(),
+    };
+  }
 
+  useEffect(() => {
     Array.from({ length: 10 }).forEach(() => {
       suggestions.push(createRandomUser());
     });
