@@ -10,9 +10,9 @@ async function login() {
       <div className="pb-10">
         <Image
           className="rounded-full mx-2 object-cover"
-          width={100}
-          height={100}
-          src="/favicon.png"
+          width={300}
+          height={200}
+          src="../wordLogo.svg"
           alt="logo"
         />
       </div>

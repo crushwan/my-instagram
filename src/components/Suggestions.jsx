@@ -1,25 +1,26 @@
-"use client";
-import { faker } from "@faker-js/faker";
-import { useEffect, useState } from "react";
+// "use client";
+// import { faker } from "@faker-js/faker";
+// import { useEffect, useState } from "react";
+import suggestions from "@/../Stories.json";
 
 function Suggestions() {
-  const [suggestions, setSuggestions] = useState([]);
+  // const [suggestions, setSuggestions] = useState([]);
 
-  useEffect(() => {
-    function createRandomUser() {
-      return {
-        id: faker.datatype.uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.image.avatar(),
-      };
-    }
+  // useEffect(() => {
+  //   function createRandomUser() {
+  //     return {
+  //       id: faker.datatype.uuid(),
+  //       username: faker.internet.userName(),
+  //       avatar: faker.image.avatar(),
+  //     };
+  //   }
 
-    Array.from({ length: 3 }).forEach(() => {
-      suggestions.push(createRandomUser());
-    });
+  //   Array.from({ length: 3 }).forEach(() => {
+  //     suggestions.push(createRandomUser());
+  //   });
 
-    setSuggestions(suggestions);
-  }, []);
+  //   setSuggestions(suggestions);
+  // }, []);
 
   return (
     <div className="mt-4 ml-10">
@@ -32,7 +33,7 @@ function Suggestions() {
         </button>
       </div>
 
-      {suggestions.map((profile) => (
+      {suggestions.slice(15, 20).map((profile) => (
         <div
           className="flex items-center justify-between mt-3"
           key={profile.id}

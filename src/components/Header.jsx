@@ -24,7 +24,7 @@ function Header() {
         className="lg:hidden relative justify-center items-center mx-auto h-20 w-12 flex-shrink-0 cursor-pointer"
       >
         <Image
-          src="../icons8-instagram.svg"
+          src="../smalllogo.svg"
           fill
           className="object-contain"
           alt=""
@@ -34,10 +34,10 @@ function Header() {
 
       <ClientSideRoute
         route="/"
-        className="hidden lg:inline-grid relative justify-center items-center mx-auto h-16 w-16 cursor-pointer"
+        className="hidden lg:inline-grid relative justify-center items-center mx-auto h-20 w-36 cursor-pointer"
       >
         <Image
-          src="../icons8-instagram.svg"
+          src="../wordLogo.svg"
           fill
           className="object-contain"
           alt=""

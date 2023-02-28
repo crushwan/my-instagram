@@ -1,26 +1,27 @@
-"use client";
-import { faker } from "@faker-js/faker";
-import { useEffect, useState } from "react";
+// "use client";
+// import { faker } from "@faker-js/faker";
+// import { useEffect, useState } from "react";
 import Story from "./Story";
+import suggestions from "@/../Stories.json";
 
 function Stories() {
-  const [suggestions, setSuggestions] = useState([]);
+  // const [suggestions, setSuggestions] = useState([]);
 
-  function createRandomUser() {
-    return {
-      userId: faker.datatype.uuid(),
-      username: faker.internet.userName(),
-      avatar: faker.image.avatar(),
-    };
-  }
+  // function createRandomUser() {
+  //   return {
+  //     userId: faker.datatype.uuid(),
+  //     username: faker.internet.userName(),
+  //     avatar: faker.image.avatar(),
+  //   };
+  // }
 
-  useEffect(() => {
-    Array.from({ length: 10 }).forEach(() => {
-      suggestions.push(createRandomUser());
-    });
+  // useEffect(() => {
+  //   Array.from({ length: 10 }).forEach(() => {
+  //     suggestions.push(createRandomUser());
+  //   });
 
-    setSuggestions(suggestions);
-  }, []);
+  //   setSuggestions(suggestions);
+  // }, []);
 
   return (
     <div className="flex space-x-4 p-6 overflow-x-scroll scrollbar-hide">
